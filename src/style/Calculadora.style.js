@@ -1,4 +1,4 @@
-//Calculadora.style.js
+//Calculadora.style.js - Camada 1
 export const divStyle = {
     height: '100vh',
     background: 'linear-gradient(to bottom, #FECDA6, #FFF)',

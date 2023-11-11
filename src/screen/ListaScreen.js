@@ -2,19 +2,25 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import Paper from '@mui/material/Paper';
 import Header from '../component/Header.js';
 import { divStyle, contentDivStyle, titleStyle, textStyle } from '../style/Lista.style.js'
-
-function createData(nome, nota1, nota2, nota3, media) {
-    return { nome, nota1, nota2, nota3, media };
-}
-  
-const rows = [
-    createData('Anna', 10.0, 9.5, 10.0, 9.83),
-    createData('Joao', 9.0, 9.0, 9.0, 9.0),
-    createData('Maria', 8.0, 6.0, 5.0, 6.33),
-    createData('Felipe', 10.0, 8.5, 9.0, 9.16),
-];
+import {useEffect, useState} from "react";
+import {listarMedias} from "../service/CalculadoraService";
 
 const Lista = () => {
+    const [medias, setMedias] = useState([]);
+
+    useEffect(() => {
+        const fetchMedias = async () => {
+            try {
+                const data = await listarMedias();
+                setMedias(data.docs);
+            } catch (error) {
+                console.error("Error fetching medias: ", error);
+            }
+        };
+
+        fetchMedias();
+    }, []);
+
     return (
         <div style={divStyle}>
             <Header/>
@@ -31,18 +37,18 @@ const Lista = () => {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
+                    {medias?.map((doc, index) => (
                         <TableRow
-                        key={row.nome}
+                        key={index}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                         <TableCell style={textStyle} component="th" scope="row">
-                            {row.nome}
+                            {doc.data().nome}
                         </TableCell>
-                        <TableCell style={textStyle} align="right">{row.nota1}</TableCell>
-                        <TableCell style={textStyle} align="right">{row.nota2}</TableCell>
-                        <TableCell style={textStyle} align="right">{row.nota3}</TableCell>
-                        <TableCell style={textStyle} align="right">{row.media}</TableCell>
+                        <TableCell style={textStyle} align="right">{doc.data().nota1}</TableCell>
+                        <TableCell style={textStyle} align="right">{doc.data().nota2}</TableCell>
+                        <TableCell style={textStyle} align="right">{doc.data().nota3}</TableCell>
+                        <TableCell style={textStyle} align="right">{doc.data().media}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>

@@ -3,6 +3,7 @@ import Header from "../component/Header.js"
 import { divStyle, titleStyle, textStyle } from '../style/Home.style.js'
 
 const Home = () => {
+
     return(
         <div style={divStyle}>
             <Header/>

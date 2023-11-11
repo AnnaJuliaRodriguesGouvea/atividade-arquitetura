@@ -1,4 +1,5 @@
-class Aluno {
+//Camada 3
+export default class Aluno {
     constructor(nome, nota1, nota2, nota3, media) {
         this.nome = nome;
         this.nota1 = nota1;

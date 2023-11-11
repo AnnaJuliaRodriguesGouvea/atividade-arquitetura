@@ -3,6 +3,7 @@ import HomeScreen from "./screen/HomeScreen";
 import CalculadoraScreen from "./screen/CalculadoraScreen";
 import ListaScreen from "./screen/ListaScreen";
 
+//navegação vai ser camada 4
 function App() {
   return (
     <Switch>
