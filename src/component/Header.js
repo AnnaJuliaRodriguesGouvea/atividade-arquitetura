@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <AppBar position="static" sx={appBarStyles} >
             <Container maxWidth="xl" sx={containerStyles}>
-            <Link style={buttonStyles} href="/">Home</Link>
+                <Link style={buttonStyles} href="/">Home</Link>
                 <Link style={buttonStyles} href="/calculadora">Calculadora</Link>
                 <Link style={buttonStyles} href="/lista">Listar Médias</Link>
             </Container>
